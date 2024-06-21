@@ -1,3 +1,4 @@
+// 예시: 메시지를 수신하고 처리하는 스크립트
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
   if (message.action === 'RestartRecording') {
     // Start recording logic
