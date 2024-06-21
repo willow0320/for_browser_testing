@@ -1,0 +1,8 @@
+http://192.168.100.198:8080/
+https://xa2dev.medipixel.io:9444/
+http://192.168.100.49:8080/main
+http://192.168.100.198:8844/
+https://xa2dev.medipixel.io:8444/
+http://192.168.100.195:8899/
+https://license.medipixel.io/user/login
+https://ffrdev.medipixel.io:7444/
