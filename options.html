@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Recording Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .url-list {
+            margin-bottom: 20px;
+        }
+
+        .url-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .url-item input {
+            flex: 1;
+            margin-right: 10px;
+            padding: 5px;
+        }
+
+        .url-item button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .btn-add {
+            margin-left: 10px;
+        }
+
+        .btn-save {
+            margin-top: 10px;
+            padding: 8px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Auto Recording Options</h1>
+
+    <div class="url-list">
+        <div class="url-item">
+            <input type="text" placeholder="Enter URL">
+            <button class="btn-add">Add URL</button>
+        </div>
+    </div>
+
+    <button class="btn-save">Save Changes</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var urlList = document.querySelector('.url-list');
+            var btnAdd = document.querySelector('.btn-add');
+            var btnSave = document.querySelector('.btn-save');
+
+            // Load existing URLs from storage and display them
+            chrome.storage.sync.get('urls', function (data) {
+                if (data.urls) {
+                    data.urls.forEach(function (url) {
+                        addUrlInput(url);
+                    });
+                }
+            });
+
+            // Add input field for new URL
+            btnAdd.addEventListener('click', function () {
+                addUrlInput('');
+            });
+
+            // Save URLs to storage
+            btnSave.addEventListener('click', function () {
+                var inputs = urlList.querySelectorAll('input[type="text"]');
+                var urls = [];
+
+                inputs.forEach(function (input) {
+                    if (input.value.trim() !== '') {
+                        urls.push(input.value.trim());
+                    }
+                });
+
+                chrome.storage.sync.set({ 'urls': urls }, function () {
+                    alert('Changes saved successfully!');
+                });
+            });
+
+            // Function to add new input field for URL
+            function addUrlInput(value) {
+                var newItem = document.createElement('div');
+                newItem.classList.add('url-item');
+                newItem.innerHTML = `
+                    <input type="text" value="${value}" placeholder="Enter URL">
+                    <button class="btn-remove">Remove</button>
+                `;
+                urlList.appendChild(newItem);
+
+                var btnRemove = newItem.querySelector('.btn-remove');
+                btnRemove.addEventListener('click', function () {
+                    newItem.remove();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
