@@ -28,22 +28,31 @@
         .url-item input {
             flex: 1;
             margin-right: 10px;
-            padding: 5px;
+            padding: 8px;
+            font-size: 14px;
         }
 
         .url-item button {
-            padding: 5px 10px;
+            padding: 8px 16px;
             cursor: pointer;
+            background-color: #f44336;
+            color: white;
+            border: none;
         }
 
         .btn-add {
             margin-left: 10px;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-save {
             margin-top: 10px;
-            padding: 8px 20px;
-            background-color: #4CAF50;
+            padding: 12px 24px;
+            background-color: #008CBA;
             color: white;
             border: none;
             cursor: pointer;
@@ -55,12 +64,10 @@
     <h1>Auto Recording Options</h1>
 
     <div class="url-list">
-        <div class="url-item">
-            <input type="text" placeholder="Enter URL">
-            <button class="btn-add">Add URL</button>
-        </div>
+        <!-- URLs will be dynamically added here -->
     </div>
 
+    <button class="btn-add">Add URL</button>
     <button class="btn-save">Save Changes</button>
 
     <script>
