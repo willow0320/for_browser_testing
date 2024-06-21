@@ -1,3 +1,0 @@
-# input your URLs
-# for example;
-# https://www.youtube.com/
